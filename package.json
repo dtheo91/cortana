@@ -1,0 +1,20 @@
+{
+  "name": "cortana",
+  "version": "1.0.0",
+  "description": "Large Language Model Interactive",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Dustin Theobald",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.1.0"
+  },
+  "dependencies": {
+    "node-record-lpcm16": "^1.0.1",
+    "prismjs": "^1.29.0",
+    "python-shell": "^5.0.0"
+  }
+}

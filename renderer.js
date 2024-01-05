@@ -48,7 +48,10 @@ ipcRenderer.on('display-message', (event, message) => {
     // Display the message in the chat box
     show_message(message);
     // Prompt the AI to respond
-    llm(message)
+    document.getElementById("generateButton").style.display = "block";
+    llm(message, function(response) {
+        document.getElementById("generateButton").style.display = "none";
+    });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +60,7 @@ ipcRenderer.on('display-message', (event, message) => {
 // Functions 
 
 function startRecording() {
+    document.getElementById("recordButton").style.display = "block";
     const file = fs.createWriteStream('prompt.wav', { encoding: 'binary' });
     console.log('Recording started');
     recording = recorder.record({sampleRate: 16000});
@@ -65,6 +69,7 @@ function startRecording() {
 
 // Function to stop recording
 function stopRecording() {
+    document.getElementById("recordButton").style.display = "none";
     console.log('Recording stopped');
     recording.stop();
     speech_to_text();
@@ -96,7 +101,10 @@ function speech_to_text(){
         show_message(full_message);
         // Ask the AI to respond
         // Example usage
+        document.getElementById("generateButton").style.display = "block";
         llm(full_message, function(response) {
+            document.getElementById("generateButton").style.display = "none";
+            document.getElementById("abortButton").style.display = "block";
             text_to_speech(response);
         });
     });
@@ -110,6 +118,7 @@ function text_to_speech(message) {
       if (err){
         throw err;
       };
+      document.getElementById("abortButton").style.display = "none";
     })
 }
 

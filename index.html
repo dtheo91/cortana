@@ -21,7 +21,7 @@
             background-color: #161c22;
             overflow-y: auto;
             position: relative;
-            height: calc(100vh - 9rem); 
+            height: calc(100vh - 13rem); 
         }
 
         ::-webkit-scrollbar {
@@ -65,12 +65,56 @@
             border-radius: 5px;
         }
 
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-button {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        button {
+            background-color: #3498db; /* Blue color */
+            color: #ffffff; /* White text color */
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; /* Smooth transitions */
+            /* Add the initial border style */
+            border: 2px solid transparent;
+        }
+
+        button:hover {
+            background-color: #2980b9; /* Darker blue color on hover */
+        }
+
+        button:active {
+            background-color: #000000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3498db;
+        }
+
     </style>
 </head>
 <body>
     <div id="chat-box"></div>
-    <textarea id="message-input" placeholder="Enter a message ..." class="message-input-box"></textarea>
-    <button id="abortButton">Abort</button>
+    <div class="input-box">
+        <div class="button-container">
+            <button id="abortButton" class="input-button" style="display: none;">Click to Abort Speech</button>
+            <button id="generateButton" class="input-button" disabled style="display: none;">Generating...</button>
+            <button id="recordingButton" class="input-button" disabled style="display: none;">Recording...</button>
+        </div>
+        <textarea id="message-input" placeholder="Enter a message ..." class="message-input-box"></textarea>
+    </div>
 
     <!-- Include your Electron scripts here -->
     <script>

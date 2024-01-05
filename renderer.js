@@ -60,7 +60,7 @@ ipcRenderer.on('display-message', (event, message) => {
 // Functions 
 
 function startRecording() {
-    document.getElementById("recordButton").style.display = "block";
+    document.getElementById("recordingButton").style.display = "block";
     const file = fs.createWriteStream('prompt.wav', { encoding: 'binary' });
     console.log('Recording started');
     recording = recorder.record({sampleRate: 16000});
@@ -69,7 +69,7 @@ function startRecording() {
 
 // Function to stop recording
 function stopRecording() {
-    document.getElementById("recordButton").style.display = "none";
+    document.getElementById("recordingButton").style.display = "none";
     console.log('Recording stopped');
     recording.stop();
     speech_to_text();

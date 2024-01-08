@@ -35,11 +35,7 @@
             border: #161c22 0.5px solid;
             border-radius: 5px;
             color: #fff;
-            position: fixed;
-            bottom: 1rem; /* Add your desired bottom margin value */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for centering */
-            width: 80vw; /* Adjust width based on left and right margins */
+            width: 100%; /* Adjust width based on left and right margins */
             resize: none;
         }
 
@@ -66,14 +62,14 @@
         }
 
         .input-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            float: left;
+            width: 83%;
         }
 
         .button-container {
             display: flex;
-            justify-content: space-between;
+            margin-bottom: 2rem;
+            justify-content: center;
         }
 
         .input-button {
@@ -103,17 +99,36 @@
             border: 2px solid #3498db;
         }
 
+        #videoPlayer {
+            float: left;
+            width: 150px;
+            height: 215px;
+            margin-left: 2rem;
+            position: relative;
+            top: -80px;
+            border-radius: 25%;
+
+            display: none;
+            opacity: 0;
+            transition: opacity 2s ease; /* Add a smooth transition effect */
+        }
     </style>
 </head>
 <body>
     <div id="chat-box"></div>
-    <div class="input-box">
-        <div class="button-container">
-            <button id="abortButton" class="input-button" style="display: none;">Click to Abort Speech</button>
-            <button id="generateButton" class="input-button" disabled style="display: none;">Generating...</button>
-            <button id="recordingButton" class="input-button" disabled style="display: none;">Recording...</button>
+    <div class="float-container">
+        <div class="input-box">
+            <div class="button-container">
+                <button id="abortButton" class="input-button" style="display: none;">Click to Abort Speech</button>
+                <button id="generateButton" class="input-button" disabled style="display: none;">Generating...</button>
+                <button id="recordingButton" class="input-button" disabled style="display: none;">Recording...</button>
+            </div>
+            <textarea id="message-input" placeholder="Enter a message ..." class="message-input-box"></textarea>
         </div>
-        <textarea id="message-input" placeholder="Enter a message ..." class="message-input-box"></textarea>
+        <video id="videoPlayer" style="display: none;">
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <!-- Include your Electron scripts here -->

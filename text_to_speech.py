@@ -1,4 +1,4 @@
-from elevenlabs import Voice, VoiceSettings, generate, play
+from elevenlabs import Voice, VoiceSettings, generate, play, save
 from elevenlabs import set_api_key
 import sys
 import json
@@ -18,7 +18,8 @@ def play_sound():
             model="eleven_turbo_v2"
         )
 
-    play(audio)
+    #play(audio)
+    save(audio, "data/output.mp3")
 
 if __name__ == '__main__':
     play_sound()

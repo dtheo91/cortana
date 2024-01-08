@@ -2,7 +2,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Define the functions and variables that will be used in the renderer process
-
 const { ipcRenderer } = require('electron');
 const { PythonShell } = require('python-shell');
 const Prism = require('prismjs');
@@ -119,6 +118,50 @@ function text_to_speech(message) {
         throw err;
       };
       document.getElementById("abortButton").style.display = "none";
+      speech_to_avatar();
+    })
+}
+
+function speech_to_avatar() {
+    const options = {
+        args: [
+            '--checkpoint_path',
+            'checkpoints/wav2lip.pth',
+            '--face',
+            'data/animation.mp4',
+            '--audio',
+            'data/output.mp3'
+        ]
+    };
+    pyshell = new PythonShell('inference.py', options);
+    pyshell.end(function (err) {
+      if (err){
+        throw err;
+      };
+
+    const videoPlayer = document.getElementById('videoPlayer');
+    const sourceElement = videoPlayer.querySelector('source');
+    const randomParam = Math.random();
+    const newVideoSource = `results/result_voice.mp4?rand=${randomParam}`;
+    // Set the new video source
+    sourceElement.src = newVideoSource;
+    // Ensure the 'loadedmetadata' event has occurred before playing
+    videoPlayer.addEventListener('loadedmetadata', function() {
+        videoPlayer.style.display = 'block';
+        videoPlayer.style.opacity = '1';
+        videoPlayer.play();
+
+        // Listen for the 'ended' event and hide the video when it's done playing
+        videoPlayer.addEventListener('ended', function() {
+            videoPlayer.style.opacity = '0';
+            videoPlayer.style.display = 'none';
+        });
+    });
+
+    // Load the new video source
+    videoPlayer.load();
+
+    
     })
 }
 

@@ -9,8 +9,9 @@ def jarvis():
     prompt = json.loads(data[0])
 
     response = client.chat.completions.create(
-                                                model = "deepcoded/DeepCoder",
-                                                messages = [{"role":"user", "content":prompt}],
+                                                model = "local-model",
+                                                messages = [{"role": "system", "content": "You are an AI assistant and here to answer some questions."},
+                                                    {"role":"user", "content":prompt}],
     )
 
     sys.stdout.write(response.choices[0].message.content)

@@ -61,6 +61,10 @@
             border-radius: 5px;
         }
 
+        .float-container {
+            display: flex;
+        }
+
         .input-box {
             float: left;
             width: 83%;
@@ -75,6 +79,7 @@
         .input-button {
             flex: 1;
             margin-right: 2rem;
+            max-width: 15%;
         }
 
         button {
@@ -100,15 +105,12 @@
         }
 
         #videoPlayer {
-            float: left;
             width: 150px;
             height: 215px;
             margin-left: 2rem;
-            position: relative;
-            top: -80px;
             border-radius: 25%;
+            margin-top: -5rem;
 
-            display: none;
             opacity: 0;
             transition: opacity 2s ease; /* Add a smooth transition effect */
         }
@@ -119,14 +121,14 @@
     <div class="float-container">
         <div class="input-box">
             <div class="button-container">
-                <button id="abortButton" class="input-button" style="display: none;">Click to Abort Speech</button>
-                <button id="generateButton" class="input-button" disabled style="display: none;">Generating...</button>
-                <button id="recordingButton" class="input-button" disabled style="display: none;">Recording...</button>
+                <button id="abortButton" class="input-button" style="display: block;">Click to Abort Speech</button>
+                <button id="generateButton" class="input-button" disabled style="display: block;">Generating...</button>
+                <button id="recordingButton" class="input-button" disabled style="display: block;">Recording...</button>
             </div>
             <textarea id="message-input" placeholder="Enter a message ..." class="message-input-box"></textarea>
         </div>
-        <video id="videoPlayer" style="display: none;">
-            <source src="" type="video/mp4">
+        <video id="videoPlayer" style="display: block;">
+            <source src="results/result_voice.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
